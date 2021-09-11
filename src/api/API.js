@@ -1,5 +1,4 @@
 export const loadVaccineData = (pincode) => {
-
   const date = getCurrentDate();
 
   // Fetching data from Api
@@ -22,6 +21,8 @@ function getCurrentDate(separator = "-") {
   let date = newDate.getDate();
   let month = newDate.getMonth() + 1;
   let year = newDate.getFullYear();
-  // 
-  return `${date}${separator}${month < 10 ? `0${month}` : `${month}`}${separator}${year}`;
+  //
+  return `${date}${separator}${
+    month < 10 ? `0${month}` : `${month}`
+  }${separator}${year}`;
 }

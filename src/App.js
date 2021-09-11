@@ -1,33 +1,40 @@
 import Dashboard from "./Pages/Dashboard/Dashboard.page";
 import Landing from "./Pages/Landing/Landing.page";
-import { BrowserRouter as Router, Switch, Route , Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import { loadVaccineData } from "./api/API";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  let pin = "" ; 
+  const [pincode, setPincode] = useState(undefined);
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("UserData"));
-    // console.log(data);
-    if (data.pincode !== undefined) {
-      pin = data.pincode
-      loadVaccineData(data.pincode).then((response) => {
-        // console.log(" Response  ", response);
-      });
+    // console.log("App Page data", data);
+    if (data === null) {
+      // console.log("null data ");
+      return;
     }
+
+    setPincode(() => data.pincode);
+    loadVaccineData(data.pincode).then((response) => {
+      // console.log("Response  ", response);
+    });
   }, []);
 
-  console.log("Pin " , pin);
   return (
     <>
       <Router>
         <Switch>
           <Route path="/" exact>
-            {pin !== 0 ? <Redirect to="/dashboard" /> : <Landing />}
+            {pincode !== undefined ? <Redirect to="/dashboard" /> : <Landing />}
           </Route>
-          <Route path="/form" exact >
-            <Landing/>
-          </Route> 
+          <Route path="/form" exact>
+            <Landing />
+          </Route>
           <Route path="/dashboard" exact>
             <Dashboard />
           </Route>

@@ -1,23 +1,15 @@
 import { useFormik } from "formik";
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect } from "react";
 import { useHistory } from "react-router";
 import * as yup from "yup";
-import { loadVaccineData } from "../../api/API";
 
 const Landing = () => {
-
-  const history = useHistory()
+  const history = useHistory();
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("UserData"));
     // console.log(data);
-    if (data !== undefined) setUserData(data);
+    if (data !== null) history.push("/dashboard"); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const [userData, setUserData] = useState({
-    name: "",
-    email: "",
-    pincode: "",
-  });
 
   // useFormik hook and yup validation
   const { handleSubmit, handleChange, handleReset, values, errors } = useFormik(
@@ -27,16 +19,15 @@ const Landing = () => {
         name: yup
           .string()
           .required("First Name is required")
-          .matches(/^[aA-zZ\s]+$/, "Numbers are not allowed."),
+          .matches(/^[aA-zZ\s]+$/, "Numbers or Special Characters are not allowed."),
 
         email: yup.string().required("email is required").email(),
 
-        pincode: yup.string().required("Pincode is required"),
+        pincode: yup.string().required("Pincode is required").max(6).min(6),
       }),
       onSubmit: (data) => {
         // console.log(data);
         localStorage.setItem("UserData", JSON.stringify(data));
-        setUserData(() => data);
         history.push("/dashboard");
       },
     }
@@ -117,14 +108,12 @@ const Landing = () => {
 
             <button
               type="submit"
-              onClick={() => console.log(" Submit Clicked")}
               className="bg-primary-blue font-extrabold text-2xl text-primary-white w-463px h-16 mb-5"
             >
               Show Statistics
             </button>
             <button
               type="reset"
-              onClick={() => console.log(" Reset Clicked")}
               className="bg-primary-red font-extrabold text-2xl text-primary-white w-463px h-16"
             >
               Reset Form
