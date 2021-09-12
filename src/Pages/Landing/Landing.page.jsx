@@ -21,7 +21,7 @@ const Landing = () => {
           .required("First Name is required")
           .matches(
             /^[aA-zZ\s]+$/,
-            "Numbers or Special Characters are not allowed."
+            "Numbers or special characters are not allowed."
           ),
 
         email: yup.string().required("email is required").email(),
@@ -58,7 +58,7 @@ const Landing = () => {
           </div>
 
           <div className="flex xl:hidden justify-center pl-16 mt-52 items-start  ">
-          <div className=" block bg-heroImage bg-contain bg-no-repeat rounded-lg ">
+            <div className=" block bg-heroImage bg-contain bg-no-repeat rounded-lg ">
               <div className="bg-secondry-gray-900 bg-opacity-50 w-80 h-80 rounded-lg  "></div>
             </div>
           </div>
@@ -75,9 +75,8 @@ const Landing = () => {
         <div className=" w-48 h-20 bg-logoImage bg-contain right-0 mr-5 mt-5 fixed"></div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} onReset={handleReset} className="flex justify-center">
-          <div className="flex flex-col mt-24 items-center sm:pl-3 md:pl-8 lg:pl-40 xl:pl-14 2xl:pl-28  ">
-
+        <form onSubmit={handleSubmit} onReset={handleReset} className="">
+          <div className="mt-24 sm:pl-3 md:pl-8 lg:pl-40 xl:pl-14 2xl:pl-28  ">
             <div className="mb-8 ">
               <h1 className="text-xl font-medium">Name</h1>
               <input
@@ -88,9 +87,11 @@ const Landing = () => {
                 required
                 type="text"
                 placeholder="Name"
-                className="w-463px bg-primary-100 border-2 p-5 h-16  border-secondry-black mt-3"
+                className="w-463px bg-primary-100 border-2 p-5 h-16 border-secondry-black mt-3"
               />
-              {errors.name ? errors.name : " "}
+              <h1 className="text-primary-red font-semibold text-sm">
+                {errors.name ? errors.name : " "}
+              </h1>
             </div>
 
             <div className="mb-8">
@@ -105,7 +106,9 @@ const Landing = () => {
                 placeholder="email"
                 className="w-463px bg-primary-100 border-2 p-5 h-16  border-secondry-black mt-3"
               />
-              {errors.email ? errors.email : " "}
+              <h1 className="text-primary-red font-semibold text-sm">
+                {errors.email ? errors.email : " "}
+              </h1>
             </div>
             <div className="mb-8">
               <h1 className="text-xl font-medium">Pincode</h1>
@@ -119,7 +122,9 @@ const Landing = () => {
                 placeholder="Pincode"
                 className="w-463px bg-primary-100 border-2 p-5 h-16  border-secondry-black mt-3"
               />
-              {errors.pincode ? errors.pincode : " "}
+              <h1 className="text-primary-red font-semibold text-sm">
+                {errors.pincode ? errors.pincode : " "}
+              </h1>
             </div>
 
             <button

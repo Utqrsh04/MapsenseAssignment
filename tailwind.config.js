@@ -19,7 +19,7 @@ module.exports = {
     },
     extend: {
       backgroundImage: (theme) => ({
-        heroImage: "url('/src/Assets/Covid Background.png')",
+        heroImage: "url('/src/Assets/Covid Background.jpg')",
         logoImage :"url('/src/Assets/Mapsense Logo.png')",
       }),
       width: {
