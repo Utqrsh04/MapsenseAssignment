@@ -19,7 +19,10 @@ const Landing = () => {
         name: yup
           .string()
           .required("First Name is required")
-          .matches(/^[aA-zZ\s]+$/, "Numbers or Special Characters are not allowed."),
+          .matches(
+            /^[aA-zZ\s]+$/,
+            "Numbers or Special Characters are not allowed."
+          ),
 
         email: yup.string().required("email is required").email(),
 
@@ -42,27 +45,40 @@ const Landing = () => {
   return (
     <div>
       <div className="flex font-sans">
-        {/* heading */}
-        <div className="absolute">
-          <h1 className=" mt-10 font-bold text-4xl text-primary-white ml-12 h-11">
-            Vaccine Tracker
-          </h1>
-          <p className="text-primary-white ml-14 mt-2 w-52 h-14 text-xs">
-            Find all the important information and all the things related to
-            Covid Virus and Vaccine Here
-          </p>
-        </div>
-        <div className="bg-heroImage bg-contain bg-no-repeat w-731px h-720px ">
-          <div className="bg-secondry-gray-900 bg-opacity-50 w-731px h-720px "></div>
+        <div className=" flex ">
+          {/* heading */}
+          <div className="absolute md:ml-5 xl:text-primary-white text-secondry-black ">
+            <h1 className=" mt-10 font-bold text-4xl ml-12 h-11">
+              Vaccine Tracker
+            </h1>
+            <p className=" ml-14 mt-2 w-52 h-14 text-xs">
+              Find all the important information and all the things related to
+              Covid Virus and Vaccine Here
+            </p>
+          </div>
+
+          <div className="flex xl:hidden justify-center pl-16 mt-52 items-start  ">
+          <div className=" block bg-heroImage bg-contain bg-no-repeat rounded-lg ">
+              <div className="bg-secondry-gray-900 bg-opacity-50 w-80 h-80 rounded-lg  "></div>
+            </div>
+          </div>
+
+          {/* heroImage */}
+          <div className="md:w-full flex justify-evenly lg:ml-3 items-center  h-screen bg-contain">
+            <div className="bg-heroImage bg-contain bg-no-repeat ">
+              <div className="bg-secondry-gray-900 bg-opacity-50 xl:w-731px h-720px "></div>
+            </div>
+          </div>
         </div>
 
         {/*logo  */}
         <div className=" w-48 h-20 bg-logoImage bg-contain right-0 mr-5 mt-5 fixed"></div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} onReset={handleReset}>
-          <div className=" w-96 flex flex-col  mt-32 ml-12  ">
-            <div className="mb-8">
+        <form onSubmit={handleSubmit} onReset={handleReset} className="flex justify-center">
+          <div className="flex flex-col mt-24 items-center sm:pl-3 md:pl-8 lg:pl-40 xl:pl-14 2xl:pl-28  ">
+
+            <div className="mb-8 ">
               <h1 className="text-xl font-medium">Name</h1>
               <input
                 id="name"

@@ -32,9 +32,6 @@ function App() {
           <Route path="/" exact>
             {pincode !== undefined ? <Redirect to="/dashboard" /> : <Landing />}
           </Route>
-          <Route path="/form" exact>
-            <Landing />
-          </Route>
           <Route path="/dashboard" exact>
             <Dashboard />
           </Route>

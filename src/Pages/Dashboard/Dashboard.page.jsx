@@ -25,7 +25,7 @@ const Dashboard = () => {
           Please Fill the form to view stats
         </h1>
         <h1>
-          <Link to="/">Link to Form</Link>
+          <a href="/"> Link to form </a>
         </h1>
       </div>
     );
