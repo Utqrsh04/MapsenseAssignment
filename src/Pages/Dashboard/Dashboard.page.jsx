@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { loadVaccineData } from "../../api/API";
+import Loader from "../../Loader";
 
 const Dashboard = () => {
   const [session, setSession] = useState("");
@@ -30,8 +31,14 @@ const Dashboard = () => {
       </div>
     );
 
+  if (!session) {
+    return (
+      <Loader/>
+    );
+  }
+
   return (
-    <div className="mx-auto w-screen h-screen text-center bg-secondry-gray-200 ">
+    <div className="mx-auto w-screen text-center ">
       {userData && (
         <div className="flex flex-row">
           <div className="w-48 flex flex-col mt-9 text-left ml-14 ">
@@ -77,7 +84,11 @@ const Dashboard = () => {
                 Slots
               </span>
             </div>
-            {session.length === 0 && <h2 className="text-xl font-semibold mt-5">No data found for this pincode at the moment</h2>}
+            {session.length === 0 && (
+              <h2 className="text-xl font-semibold mt-5">
+                No data found for this pincode at the moment
+              </h2>
+            )}
             {session.map((data, index) => (
               <div
                 key={index}
@@ -91,7 +102,7 @@ const Dashboard = () => {
                 <span className="text-xl text-center font-bold  w-full">
                   {data.district_name}
                 </span>
-                <span className="text-xl text-center font-bold  w-full">
+                <span className="text-lg text-center font-bold  w-full">
                   {data.name}
                 </span>
                 <span className="text-xl text-center font-bold  w-full">
@@ -115,7 +126,7 @@ const Dashboard = () => {
         )}
       </div>
 
-      <div className="w-full absolute bottom-0">
+      <div className="w-full  bottom-0">
         <div className="flex flex-row justify-center items-center mb-10">
           <Link
             onClick={() => localStorage.removeItem("UserData")}

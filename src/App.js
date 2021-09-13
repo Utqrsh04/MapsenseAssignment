@@ -8,10 +8,12 @@ import {
 } from "react-router-dom";
 import { loadVaccineData } from "./api/API";
 import { useEffect, useState } from "react";
+import Loader from "./Loader";
 
 function App() {
   const [pincode, setPincode] = useState(undefined);
   useEffect(() => {
+
     const data = JSON.parse(localStorage.getItem("UserData"));
     // console.log("App Page data", data);
     if (data === null) {
@@ -19,12 +21,15 @@ function App() {
       return;
     }
 
+    <Loader/>
+
     setPincode(() => data.pincode);
     loadVaccineData(data.pincode).then((response) => {
       // console.log("Response  ", response);
     });
   }, []);
 
+  
   return (
     <>
       <Router>
