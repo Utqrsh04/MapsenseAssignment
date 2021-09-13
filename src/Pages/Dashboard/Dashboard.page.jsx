@@ -38,7 +38,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="mx-auto w-screen text-center ">
+    <div className="mx-auto text-center ">
       {userData && (
         <div className="flex flex-row">
           <div className="w-48 flex flex-col mt-9 text-left ml-14 ">
@@ -51,11 +51,11 @@ const Dashboard = () => {
             <h1>{userData.email}</h1>
           </div>
 
-          <div className=" w-48 h-20 bg-logoImage bg-contain right-0 mr-5 mt-5 fixed"></div>
+          <div className=" w-48 h-20 bg-logoImage bg-contain right-0 ml-auto mr-10 mt-5 relative"></div>
         </div>
       )}
 
-      <div className="w-full text-center mb-10 mt-7">
+      <div className=" text-center  mb-10 mt-7">
         {session && (
           <div className="mx-14">
             <div className=" flex flex-row justify-evenly items-center bg-primary-blue h-16">
@@ -92,7 +92,7 @@ const Dashboard = () => {
             {session.map((data, index) => (
               <div
                 key={index}
-                className={`flex flex-row text-secondry-black justify-evenly items-center h-16  ${
+                className={`flex flex-row text-secondry-black justify-evenly items-center h-28  ${
                   index % 2 === 0 ? " bg-primary-200 " : " bg-primary-100"
                 }  `}
               >
@@ -102,7 +102,7 @@ const Dashboard = () => {
                 <span className="text-xl text-center font-bold  w-full">
                   {data.district_name}
                 </span>
-                <span className="text-lg text-center font-bold  w-full">
+                <span className="text-xl text-center font-bold  w-full">
                   {data.name}
                 </span>
                 <span className="text-xl text-center font-bold  w-full">
@@ -117,8 +117,8 @@ const Dashboard = () => {
                 <span className="text-xl text-center font-bold  w-full">
                   {data.min_age_limit}
                 </span>
-                <span className="text-xl text-center font-bold  w-full">
-                  slots
+                <span className=" text-center font-bold  w-full">
+                  {data.slots.map( (slot , index) => <h1 className=" text-xs md:text-sm  font-semibold">{slot}</h1> )}
                 </span>
               </div>
             ))}
